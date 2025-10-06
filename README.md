@@ -3,7 +3,7 @@ Una calculadora simple de consola desarrollada en JavaScript con cliente interac
 ## Integrantes 
 
 - Alvarado Mendez, Micaela
--
+- Caranchi Quinteros, Tiago Martin
 -
 -
 
