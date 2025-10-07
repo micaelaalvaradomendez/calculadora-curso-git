@@ -4,7 +4,7 @@ Una calculadora simple de consola desarrollada en JavaScript con cliente interac
 
 - Alvarado Mendez, Micaela
 - Caranchi Quinteros, Tiago Martin
--
+- Abril Celeste Benitez Smith
 -
 
 ## 📋 Características
