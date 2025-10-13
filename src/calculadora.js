@@ -23,7 +23,8 @@ class Calculadora {
   }
 
   raizCuadrada(numero) {
-    return Math.sqrt(numero);
+    if (numero>0){ return Math.sqrt(numero);} 
+    else{return "No se puede calcular la raíz cuadrada de un número negativo";};
   }
 }
 
