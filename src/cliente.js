@@ -18,6 +18,7 @@ function mostrarMenu() {
   console.log('4. Dividir');
   console.log('5. Potencia');
   console.log('6. Raíz Cuadrada');
+  console.log('7. Factorial');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -53,6 +54,8 @@ async function operacionUnNumero(operacion, nombreOperacion) {
     console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
   } else if (isNaN(resultado)) {
     console.log(`\n⚠️  Error: Operación inválida (resultado: NaN)`);
+  } else if (typeof resultado === 'string') {
+    console.log(`\n⚠️  Error: ${resultado}`);
   } else {
     console.log(`\n✓ Resultado: √${num} = ${resultado}`);
   }
@@ -116,6 +119,19 @@ async function ejecutarOpcion(opcion) {
         (num) => calc.raizCuadrada(num),
         'raíz cuadrada'
       );
+      break;
+    
+    case '7':
+      const numeroFact = await pedirNumero('Ingrese el número para calcular su factorial: ');
+      const resultadoFact = calc.factorial(numeroFact);
+      
+      if (resultadoFact === undefined) {
+        console.log('\n La función factorial aún no está implementada');
+      } else if (typeof resultadoFact === 'string') {
+        console.log(`\n Error: ${resultadoFact}`);
+      } else {
+        console.log(`\n✓ Resultado: ${numeroFact}! = ${resultadoFact}`);
+      }
       break;
     
     case '0':
