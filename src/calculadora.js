@@ -26,6 +26,20 @@ class Calculadora {
     if (numero>0){ return Math.sqrt(numero);} 
     else{return "No se puede calcular la raíz cuadrada de un número negativo";};
   }
+
+  factorial(numero){
+    if (numero < 0) {
+      return "No se puede calcular el factorial de un número negativo";
+    }
+    if (numero === 0 || numero === 1) {
+      return 1;
+    }
+    let resultado = 1;
+    for (let i = 2; i <= numero; i++) {
+      resultado *= i;
+    }
+    return resultado;
+  }
 }
 
 // Exportar para usar en tests
