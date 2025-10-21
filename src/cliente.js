@@ -120,7 +120,7 @@ async function ejecutarOpcion(opcion) {
         'raíz cuadrada'
       );
       break;
-    
+    // 
     case '7':
       const numeroFact = await pedirNumero('Ingrese el número para calcular su factorial: ');
       const resultadoFact = calc.factorial(numeroFact);
