@@ -20,6 +20,7 @@ function mostrarMenu() {
   console.log('6. Raíz Cuadrada');
   console.log('7. Factorial');
   console.log('8. Resto')
+  console.log('9.  Array Promedio');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -31,6 +32,45 @@ function pedirNumero(mensaje) {
       resolve(numero);
     });
   });
+}
+
+async function operacionArrayNumeros(operacion, nombreOperacion) {
+  let numeros = [];
+  console.log(`\n-- Ingrese números para calcular el ${nombreOperacion}. Escriba 'fin' para terminar. --`);
+
+  while (true) {
+    const respuesta = await new Promise((resolve) => {
+      rl.question(`Ingrese número ${numeros.length + 1} (o 'fin'): `, resolve);
+    });
+
+    if (respuesta.toLowerCase() === 'fin') {
+      break;
+    }
+
+    const numero = parseFloat(respuesta);
+
+    if (!isNaN(numero)) {
+      numeros.push(numero);
+    } else {
+      console.log('⚠️  Entrada inválida. Intente de nuevo.');
+    }
+  }
+
+  if (numeros.length === 0) {
+    console.log(`\n⚠️  No se ingresaron números para calcular el ${nombreOperacion}.`);
+    return;
+  }
+
+  const resultado = operacion(numeros);
+  const numerosStr = `[${numeros.join(', ')}]`;
+
+  if (resultado === undefined) {
+    console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada en Calculadora.js`);
+  } else if (typeof resultado === 'string') {
+    console.log(`\n⚠️  Error: ${resultado}`);
+  } else {
+    console.log(`\n✓ Resultado: ${nombreOperacion} de ${numerosStr} = ${resultado}`);
+  }
 }
 
 async function operacionDosNumeros(operacion, nombreOperacion) {
@@ -134,6 +174,7 @@ async function ejecutarOpcion(opcion) {
         console.log(`\n✓ Resultado: ${numeroFact}! = ${resultadoFact}`);
       }
       break;
+
     //declaracion de funcion resto
     case '8':
     await operacionDosNumeros(
@@ -141,6 +182,14 @@ async function ejecutarOpcion(opcion) {
             'resto'
           );
           break;
+
+      case '9':
+        await operacionArrayNumeros(
+          (arr) => calc.promedio(arr), //
+          'Promedio de Array'
+        );
+        break;
+
     case '0':
       console.log('\n¡Hasta luego! 👋');
       rl.close();
