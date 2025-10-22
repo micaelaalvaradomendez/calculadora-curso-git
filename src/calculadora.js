@@ -40,22 +40,32 @@ class Calculadora {
     }
     return resultado;
   }
-}
   promedio(arr) {
-        if (!Array.isArray(arr) || arr.length === 0) {
-            return "Error: El array está vacío o no es un array válido.";
-        }
+          if (!Array.isArray(arr) || arr.length === 0) {
+              return "Error: El array está vacío o no es un array válido.";
+          }
 
-        const suma = arr.reduce((acc, current) => acc + current, 0);
-        return suma / arr.length;
-  }
-
-  resto(a,b){
-    if (b === 0){
-    return ("No se puede calcular el resto con divisor cero");
+          const suma = arr.reduce((acc, current) => acc + current, 0);
+          return suma / arr.length;
     }
-    return a % b;
-  }
+
+    maximo(arr) {
+            if (!Array.isArray(arr) || arr.length === 0) {
+                return "Error: El array está vacío o no es un array válido.";
+            }
+            // Usa Math.max con el operador spread para encontrar el máximo del array
+            return Math.max(...arr);
+    }
+
+
+    resto(a,b){
+      if (b === 0){
+      return ("No se puede calcular el resto con divisor cero");
+      }
+      return a % b;
+    }
+}
+
 
 // Exportar para usar en tests
 if (typeof module !== 'undefined' && module.exports) {

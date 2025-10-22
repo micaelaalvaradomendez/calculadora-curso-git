@@ -21,6 +21,7 @@ function mostrarMenu() {
   console.log('7. Factorial');
   console.log('8. Resto')
   console.log('9.  Array Promedio');
+  console.log('10. Array Máximo');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -189,6 +190,13 @@ async function ejecutarOpcion(opcion) {
           'Promedio de Array'
         );
         break;
+
+      case '10': // 👈 Nuevo case para la opción Máximo
+          await operacionArrayNumeros(
+            (arr) => calc.maximo(arr), // Llama a la nueva función maximo
+            'Máximo de Array'
+          );
+          break;
 
     case '0':
       console.log('\n¡Hasta luego! 👋');
