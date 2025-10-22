@@ -57,6 +57,20 @@ class Calculadora {
     return a % b;
   }
 
+  guardarEnMemoria(valor) {
+      this.memoria = valor;
+      return this.memoria;
+  }
+
+  obtenerDeMemoria() {
+      return this.memoria;
+  }
+
+  limpiarMemoria() {
+      this.memoria = null;
+      return 'Memoria limpiada';
+  }
+
 // Exportar para usar en tests
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = Calculadora;

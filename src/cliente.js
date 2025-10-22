@@ -21,6 +21,10 @@ function mostrarMenu() {
   console.log('7. Factorial');
   console.log('8. Resto')
   console.log('9.  Array Promedio');
+
+  console.log('11. Guardar en memoria');
+  console.log('12. Usar memoria');
+  console.log('13. Limpiar memoria');
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -32,6 +36,24 @@ function pedirNumero(mensaje) {
       resolve(numero);
     });
   });
+}
+
+async function pedirNumeroConMemoria(mensaje) {
+  const memoriaActual = calc.obtenerDeMemoria();
+
+  if (memoriaActual !== null) {
+    const usarMemoria = await new Promise((resolve) => {
+      rl.question(`¿Usar valor de memoria (${memoriaActual})? (s/n): `, (respuesta) => {
+        resolve(respuesta.toLowerCase() === 's');
+      });
+    });
+
+    if (usarMemoria) {
+      return memoriaActual;
+    }
+  }
+
+  return await pedirNumero(mensaje);
 }
 
 async function operacionArrayNumeros(operacion, nombreOperacion) {
@@ -74,15 +96,29 @@ async function operacionArrayNumeros(operacion, nombreOperacion) {
 }
 
 async function operacionDosNumeros(operacion, nombreOperacion) {
-  const num1 = await pedirNumero('Ingrese el primer número: ');
-  const num2 = await pedirNumero('Ingrese el segundo número: ');
-  
+  const num1 = await pedirNumeroConMemoria('Ingrese el primer número: ');
+  const num2 = await pedirNumeroConMemoria('Ingrese el segundo número: ');
+
   const resultado = operacion(num1, num2);
-  
+
   if (resultado === undefined) {
     console.log(`\n⚠️  La función ${nombreOperacion} aún no está implementada`);
+  } else if (typeof resultado === 'string' && resultado.includes('Error')) {
+    console.log(`\n❌ ${resultado}`);
   } else {
     console.log(`\n✓ Resultado: ${num1} ${getSimboloOperacion(nombreOperacion)} ${num2} = ${resultado}`);
+
+    // Preguntar si guardar en memoria automáticamente
+    const guardar = await new Promise((resolve) => {
+      rl.question('¿Guardar resultado en memoria? (s/n): ', (respuesta) => {
+        resolve(respuesta.toLowerCase() === 's');
+      });
+    });
+
+    if (guardar) {
+      calc.guardarEnMemoria(resultado);
+      console.log('💾 Resultado guardado en memoria');
+    }
   }
 }
 
@@ -189,6 +225,29 @@ async function ejecutarOpcion(opcion) {
           'Promedio de Array'
         );
         break;
+
+    case '11':
+    // Guardar en memoria
+        const valor = await pedirNumero('Ingrese el valor a guardar en memoria: ');
+        calc.guardarEnMemoria(valor);
+        console.log(`💾 Valor ${valor} guardado en memoria`);
+        break;
+
+    case '12':
+    // Usar memoria
+      const memoria = calc.obtenerDeMemoria();
+      if (memoria === null) {
+        console.log('\n💾 No hay valor guardado en memoria');
+      } else {
+        console.log(`\n💾 Valor en memoria: ${memoria}`);
+      }
+      break;
+
+    case '13':
+    // Limpiar memoria
+       const mensaje = calc.limpiarMemoria();
+       console.log(`\n${mensaje}`);
+       break;
 
     case '0':
       console.log('\n¡Hasta luego! 👋');
