@@ -42,6 +42,13 @@ class Calculadora {
   }
 }
 
+    resto(a,b){
+    if (b === 0){
+    return ("No se puede calcular el resto con divisor cero");
+    }
+    return a % b;
+    }
+
 // Exportar para usar en tests
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = Calculadora;

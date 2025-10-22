@@ -19,6 +19,7 @@ function mostrarMenu() {
   console.log('5. Potencia');
   console.log('6. Raíz Cuadrada');
   console.log('7. Factorial');
+  console.log('8. Resto')
   console.log('0. Salir');
   console.log('=================================');
 }
@@ -133,7 +134,13 @@ async function ejecutarOpcion(opcion) {
         console.log(`\n✓ Resultado: ${numeroFact}! = ${resultadoFact}`);
       }
       break;
-    
+    //declaracion de funcion resto
+    case '8':
+    await operacionDosNumeros(
+            (a, b) => calc.resto(a, b),
+            'resto'
+          );
+          break;
     case '0':
       console.log('\n¡Hasta luego! 👋');
       rl.close();
