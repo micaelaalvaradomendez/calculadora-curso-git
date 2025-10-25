@@ -23,6 +23,7 @@ function mostrarMenu() {
   console.log('9.  Array Promedio');
   console.log('10. Array Máximo');
   console.log('11. Porcentaje' );
+  console.log('12. Logaritmo Natural');
   console.log('0. Salir');
   console.log('=================================');
 }

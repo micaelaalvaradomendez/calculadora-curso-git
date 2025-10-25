@@ -67,7 +67,14 @@ class Calculadora {
 
     porcentaje(porcentaje, numero) {
       return numero * (porcentaje / 100);
-}
+    }
+
+    ln(x) {
+      const n = Number(x);
+      if (!Number.isFinite(n)) throw new Error('Entrada inválida');
+      if (n <= 0) throw new Error('El logaritmo natural está definido solo para x > 0');
+      return Math.log(n);
+    }
 }
 
 
