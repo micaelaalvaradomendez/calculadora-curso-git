@@ -64,6 +64,10 @@ class Calculadora {
       }
       return a % b;
     }
+
+    porcentaje(porcentaje, numero) {
+      return numero * (porcentaje / 100);
+}
 }
 
 
